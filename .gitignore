@@ -10,3 +10,13 @@
 **/Makefile
 !/Makefile
 /Testing/*
+
+.vscode/
+
+.pio/
+
+*.a
+
+*.dylib
+
+test/main

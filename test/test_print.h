@@ -37,7 +37,7 @@ namespace PrintTest
         print->print(unsigned_long_var, DEC);
 
         Verify(OverloadedMethod(ArduinoFake(Print), print, size_t(char)).Using(char_var)).Once();
-        Verify(OverloadedMethod(ArduinoFake(Print), print, size_t(const char[])).Using(char_array_var)).Once();
+        Verify(OverloadedMethod(ArduinoFake(Print), print, size_t(const char[])).Using(StrEq(char_array_var))).Once();
         Verify(OverloadedMethod(ArduinoFake(Print), print, size_t(unsigned char, int)).Using(unsigned_char_var, DEC)).Once();
 
         Verify(OverloadedMethod(ArduinoFake(Print), print, size_t(int, int)).Using(int_var, DEC)).Once();
@@ -85,7 +85,7 @@ namespace PrintTest
 
         Verify(OverloadedMethod(ArduinoFake(Print), println, size_t())).Once();
         Verify(OverloadedMethod(ArduinoFake(Print), println, size_t(char)).Using(char_var)).Once();
-        Verify(OverloadedMethod(ArduinoFake(Print), println, size_t(const char[])).Using(char_array_var)).Once();
+        Verify(OverloadedMethod(ArduinoFake(Print), println, size_t(const char[])).Using(StrEq(char_array_var))).Once();
         Verify(OverloadedMethod(ArduinoFake(Print), println, size_t(unsigned char, int)).Using(unsigned_char_var, DEC)).Once();
 
         Verify(OverloadedMethod(ArduinoFake(Print), println, size_t(int, int)).Using(int_var, DEC)).Once();

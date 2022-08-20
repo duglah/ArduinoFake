@@ -41,7 +41,7 @@ namespace ClientTest
         Verify(Method(ArduinoFake(Client), peek)).Once();
         Verify(Method(ArduinoFake(Client), flush)).Once();
         Verify(Method(ArduinoFake(Client), connected)).Exactly(2_Times);
-        Verify(OverloadedMethod(ArduinoFake(Client), connect, int(const char*, uint16_t)).Using("localhost", 8080)).Once();
+        Verify(OverloadedMethod(ArduinoFake(Client), connect, int(const char*, uint16_t)).Using(StrEq("localhost"), 8080)).Once();
     }
 
     void test_connect(void)
@@ -60,8 +60,8 @@ namespace ClientTest
         TEST_ASSERT_EQUAL(0, client->connect(ipAddress1, 8080));
         TEST_ASSERT_EQUAL(1, client->connect(ipAddress2, 8080));
 
-        Verify(OverloadedMethod(ArduinoFake(Client), connect, int(const char*, uint16_t)).Using("localhost", 8080)).Once();
-        Verify(OverloadedMethod(ArduinoFake(Client), connect, int(const char*, uint16_t)).Using("localhost", 80)).Once();
+        Verify(OverloadedMethod(ArduinoFake(Client), connect, int(const char*, uint16_t)).Using(StrEq("localhost"), 8080)).Once();
+        Verify(OverloadedMethod(ArduinoFake(Client), connect, int(const char*, uint16_t)).Using(StrEq("localhost"), 80)).Once();
 
         Verify(OverloadedMethod(ArduinoFake(Client), connect, int(IPAddress, uint16_t)).Using(ipAddress1, 8080)).Once();
         Verify(OverloadedMethod(ArduinoFake(Client), connect, int(IPAddress, uint16_t)).Using(ipAddress2, 8080)).Once();
